@@ -9,19 +9,4 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  module: {
-    rules: [
-      {
-        test: /\.(glb|gltf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'model/'
-            }
-          }
-        ]
-      }
-    ]
-  }
 }
