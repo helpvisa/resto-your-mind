@@ -4,7 +4,9 @@
   "description": "Roll the dice and pick a spot to eat!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack --config webpack.config.js",
+    "dev": "npx webpack serve --config webpack.dev.config.js"
   },
   "author": "Dan Brackenbury",
   "license": "ISC",
@@ -13,6 +15,9 @@
     "three": "^0.150.1"
   },
   "devDependencies": {
-    "cannon-es-debugger": "^1.0.0"
+    "cannon-es-debugger": "^1.0.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }
