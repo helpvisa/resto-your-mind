@@ -1,4 +1,4 @@
-# Resto Your Mind
+# Rollerpicker
 
 Roll the dice and see what's for dinner. WIP.
 
