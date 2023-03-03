@@ -8,7 +8,7 @@ class Scene {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.VSMShadowMap;
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
+    this.renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.6);
 
     // setup our internal clock
     this.clock = new THREE.Clock();
@@ -16,9 +16,11 @@ class Scene {
     // create a scene
     this.scene = new THREE.Scene();
 
-    // setup camera
+    // setup camera and listener
+    this.listener = new THREE.AudioListener();
     this.cameraRatio = window.innerWidth / window.innerHeight;
-    this.camera = new THREE.OrthographicCamera(this.cameraRatio * 20 / -2, this.cameraRatio * 20 / 2, 20 / 2, 20 / -2, -1000, 1000);
+    this.camera = new THREE.PerspectiveCamera(45, this.cameraRatio, 1, 1000);
+    this.camera.add(this.listener);
     this.camera.position.set(10, 10, 10);
     this.camera.lookAt(0, 0, 0);
 
@@ -38,12 +40,9 @@ class Scene {
     // window resize function (resizes canvas)
     window.addEventListener("resize", () => {
       this.cameraRatio = window.innerWidth / window.innerHeight;
-      this.camera.left = this.cameraRatio * 20 / -2;
-      this.camera.right = this.cameraRatio * 20 / 2;
-      this.camera.top = 20 / 2;
-      this.camera.bottom = 20 / -2;
+      this.camera.aspect = this.cameraRatio;
       this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
+      this.renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.6);
     }, false);
 
     // add canvas to page

@@ -1,0 +1,33 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  background-color: darkslategrey;
+}
+
+canvas {
+  margin: 20vh 20vw;
+}
+
+/* our user input class (on-screen buttons) */
+.user-input {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  height: 5vh;
+  width: 10vw;
+  top: 0vh;
+  margin: 10vh 45vw;
+}
+
+.rollable {
+  color: darkgreen;
+  background-color: greenyellow;
+}
+
+.unrollable {
+  color: pink;
+  background-color: brown;
+  pointer-events: none;
+}

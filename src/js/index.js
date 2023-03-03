@@ -41,17 +41,29 @@ world.scene.add(visualPlane);
 
 // create dice
 const dice = [
-  new Dice(8, 2, new THREE.Vector3(-3, 1, 0), world.scene, physWorld.world),
-  new Dice(8, 2, new THREE.Vector3(3, 1, 0), world.scene, physWorld.world)
+  new Dice(8, 2, new THREE.Vector3(-3, 1, 0), world.scene, physWorld.world, world.listener),
+  new Dice(8, 2, new THREE.Vector3(3, 1, 0), world.scene, physWorld.world, world.listener)
 ];
 
 // create debugger
 // const cannonDebugger = new CannonDebugger(world.scene, physWorld.world);
 
-// check for input
-document.addEventListener('keydown', () => {
-  dice[0].roll();
-  dice[1].roll();
+// check for roll click
+const rollButton = document.createElement("button"); // create our roll button
+rollButton.className = "user-input unrollable";
+rollButton.textContent = "ROLL";
+document.body.appendChild(rollButton);
+let rollable = false; // variable determining if we are allowed to roll again
+rollButton.addEventListener('click', () => {
+  // restart listener context
+  if (world.listener.context.state === "suspended") {
+    world.listener.context.resume();
+  }
+
+  if (rollable) {
+    dice[0].roll();
+    dice[1].roll();
+  }
 });
 
 // define our stepping function
@@ -61,13 +73,24 @@ function stepFrame() {
   // update our debugger
   // cannonDebugger.update();
   // update our object positions
+  rollable = true // can we roll the dice?
   dice.forEach((die) => {
     die.updateSelf();
+    if (!die.isStationary) { // not rollable if even a single die is still moving
+      rollable = false;
+    }
   });
   // update our orbit controller
   controls.update();
   // render the scene
   world.renderScene();
+
+  // update our roll button's classes
+  if (rollable) {
+    rollButton.className = "user-input rollable";
+  } else {
+    rollButton.className = "user-input unrollable";
+  }
 
   // start a loop
   requestAnimationFrame(stepFrame);
