@@ -6,9 +6,9 @@ class Scene {
     // construct our world scene and setup three.js
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.VSMShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.6);
+    this.renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.6);
 
     // setup our internal clock
     this.clock = new THREE.Clock();
@@ -18,7 +18,7 @@ class Scene {
 
     // setup camera and listener
     this.listener = new THREE.AudioListener();
-    this.cameraRatio = window.innerWidth / window.innerHeight;
+    this.cameraRatio = (window.innerWidth * 0.8) / (window.innerHeight * 0.6);
     this.camera = new THREE.PerspectiveCamera(45, this.cameraRatio, 1, 1000);
     this.camera.add(this.listener);
     this.camera.position.set(10, 10, 10);
@@ -29,8 +29,8 @@ class Scene {
     this.spotlight.position.set(0, 10, 0);
     this.spotlight.castShadow = true;
     this.spotlight.shadow.bias = -0.001;
-    this.spotlight.shadow.mapSize.width = 512;
-    this.spotlight.shadow.mapSize.height = 512;
+    this.spotlight.shadow.mapSize.width = 1024;
+    this.spotlight.shadow.mapSize.height = 1024;
     // setup spotlight
     this.spotlight.angle = 0.8;
     this.spotlight.penumbra = 0.2;
@@ -39,10 +39,10 @@ class Scene {
 
     // window resize function (resizes canvas)
     window.addEventListener("resize", () => {
-      this.cameraRatio = window.innerWidth / window.innerHeight;
+      this.cameraRatio = (window.innerWidth * 0.8) / (window.innerHeight * 0.6);
       this.camera.aspect = this.cameraRatio;
       this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.6);
+      this.renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.6);
     }, false);
 
     // add canvas to page

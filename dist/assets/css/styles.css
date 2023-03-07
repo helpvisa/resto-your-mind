@@ -2,32 +2,81 @@
   padding: 0px;
   margin: 0px;
   background-color: darkslategrey;
-}
-
-canvas {
-  margin: 20vh 20vw;
-}
-
-/* our user input class (on-screen buttons) */
-.user-input {
+  /* prevent the user from highlighting any text on the page */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+canvas {
+  margin: 20vh 10vw;
+}
+
+.hide {
+  display: none;
+}
+
+/* our user input class (on-screen buttons) */
+.user-input {
   position: absolute;
-  height: 5vh;
-  width: 10vw;
-  top: 0vh;
-  margin: 10vh 45vw;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-style: solid;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 3vh;
+  padding: 10px;
 }
 
 .rollable {
   color: darkgreen;
   background-color: greenyellow;
+  border-color: darkgreen;
+  cursor: pointer;
 }
 
 .unrollable {
   color: pink;
   background-color: brown;
-  pointer-events: none;
+  border-color: pink;
+  cursor: not-allowed;
+}
+
+/* dice selectors */
+.selector {
+  
+}
+
+/* our ui text class */
+.info {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding: 10px;
+  color: lightsteelblue;
+  background-color: rgba(0, 200, 255, 0.2);
+  border-radius: 20px;
+  text-align: center;
+  font-size: 2.5vh;
+}
+
+/* define our animation behaviours for the UI text */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+.fade-in {
+  animation: fadeIn 0.5s both;
+}
+.fade-out {
+  animation: fadeOut 0.5s both;
 }
