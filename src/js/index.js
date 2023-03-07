@@ -69,7 +69,7 @@ const diceSelector = [dieOne, dieTwo, dieThree, dieFour];
 for (let i = 0; i < diceSelector.length; i++) {
   let btn = diceSelector[i];
   btn.className = "user-input selector";
-  btn.textContent = "Spawn " + (i + 1);
+  btn.textContent = (i + 1);
   if (i === 0) {
     btn.textContent += " Die";
   } else {
