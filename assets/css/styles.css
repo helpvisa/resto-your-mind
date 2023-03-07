@@ -28,7 +28,7 @@ canvas {
 
 .rollable {
   position: absolute;
-  top: 10%;
+  top: 2%;
   left: 50%;
   transform: translate(-50%, 0%);
   color: darkgreen;
@@ -39,7 +39,7 @@ canvas {
 
 .unrollable {
   position: absolute;
-  top: 10%;
+  top: 2%;
   left: 50%;
   transform: translate(-50%, 0%);
   color: pink;
@@ -53,8 +53,9 @@ canvas {
   background-color: rgb(66, 110, 110);
   color: rgb(122, 204, 204);
   border-color: rgb(122, 204, 204);
-  margin: 5px;
+  margin: 0px 2px;
   cursor: pointer;
+  font-size: 2vh;
 }
 
 .selector:hover {
@@ -69,7 +70,7 @@ canvas {
   position: absolute;
   display: flex;
   flex-direction: row;
-  top: 82%;
+  bottom: 2%;
   left: 50%;
   transform: translate(-50%, 0%);
 }
@@ -82,6 +83,7 @@ canvas {
   transform: translate(-50%, 0%);
   padding: 10px;
   color: lightsteelblue;
+  backdrop-filter: blur(5px);
   background-color: rgba(0, 200, 255, 0.2);
   border-radius: 20px;
   text-align: center;
