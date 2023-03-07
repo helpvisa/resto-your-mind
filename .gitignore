@@ -7,7 +7,8 @@
 /coverage
 
 # production
-/build
+bundle.js
+bundle.js.LICENSE
 
 # misc
 .DS_Store
