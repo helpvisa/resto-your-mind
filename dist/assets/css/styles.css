@@ -19,10 +19,6 @@ canvas {
 
 /* our user input class (on-screen buttons) */
 .user-input {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, 0%);
   border-style: solid;
   border-radius: 20px;
   font-weight: bold;
@@ -31,6 +27,10 @@ canvas {
 }
 
 .rollable {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
   color: darkgreen;
   background-color: greenyellow;
   border-color: darkgreen;
@@ -38,6 +38,10 @@ canvas {
 }
 
 .unrollable {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
   color: pink;
   background-color: brown;
   border-color: pink;
@@ -46,7 +50,28 @@ canvas {
 
 /* dice selectors */
 .selector {
-  
+  background-color: rgb(66, 110, 110);
+  color: rgb(122, 204, 204);
+  border-color: rgb(122, 204, 204);
+  margin: 5px;
+  cursor: pointer;
+}
+
+.selector:hover {
+  background-color: rgb(107, 124, 140);
+}
+
+.selector:active {
+  background-color: rgb(40, 46, 52);
+}
+
+.btn-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 /* our ui text class */

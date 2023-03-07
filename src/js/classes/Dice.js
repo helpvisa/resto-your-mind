@@ -113,7 +113,7 @@ class Dice {
     // pick a random local point
     const localPoint = new CANNON.Vec3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5);
     let pulse = new CANNON.Vec3(0, 5, 0).vsub(this.body.position);
-    pulse = pulse.scale(16);
+    pulse = pulse.scale(18);
     this.body.applyImpulse(pulse, localPoint);
   }
 

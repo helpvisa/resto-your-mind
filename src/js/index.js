@@ -40,10 +40,9 @@ visualPlane.receiveShadow = true;
 world.scene.add(visualPlane);
 
 // create dice
-const dice = [
-  new Dice(8, 2, new THREE.Vector3(-3, 1, 0), world.scene, physWorld.world, world.listener),
-  new Dice(8, 2, new THREE.Vector3(3, 1, 0), world.scene, physWorld.world, world.listener),
-  new Dice(8, 2, new THREE.Vector3(0, 1, 0), world.scene, physWorld.world, world.listener)
+let dice = [
+  new Dice(8, 2, new THREE.Vector3(-1.2, 1, -1.2), world.scene, physWorld.world, world.listener),
+  new Dice(8, 2, new THREE.Vector3(1.2, 1, 1.2), world.scene, physWorld.world, world.listener),
 ];
 
 // create debugger
@@ -57,6 +56,49 @@ document.body.appendChild(uiText);
 let introScreen = true; // if we haven't yet rolled, show an intro screen
 let sleepTimer = 0; // cooldown to determine if a roll is finished after dice become stationary
 let rollFinished = true; // have we got a number from our roll?
+
+// buttons to set the number of dice
+const selectorDiv = document.createElement("div");
+selectorDiv.className = "btn-container";
+const dieOne = document.createElement("button");
+const dieTwo = document.createElement("button");
+const dieThree = document.createElement("button");
+const dieFour = document.createElement("button");
+const diceSelector = [dieOne, dieTwo, dieThree, dieFour];
+// setup our buttons using the above array
+for (let i = 0; i < diceSelector.length; i++) {
+  let btn = diceSelector[i];
+  btn.className = "user-input selector";
+  btn.textContent = "Spawn " + (i + 1);
+  if (i === 0) {
+    btn.textContent += " Die";
+  } else {
+    btn.textContent += " Dice";
+  }
+  // create an event listener for this specific btn
+  btn.addEventListener('click', () => {
+    // remove our existing dice from the world scene
+    dice.forEach((die) => {
+      world.scene.remove(die.mesh);
+      physWorld.world.removeBody(die.body);
+    });
+
+    // re-create our dice array with the corresponding button's # of dice
+    dice = []; // reset array
+    for (let d = 0; d < i + 1; d++) {
+      // set an x value for the die
+      let x = 1.2 * (d + 1);
+      if (d % 2 !== 0) {
+        x *= -1; // negative x for odd numbers
+      }
+      dice.push(new Dice(8, 2, new THREE.Vector3(x, 1, x), world.scene, physWorld.world, world.listener));
+    }
+  });
+  // add it to div
+  selectorDiv.appendChild(btn);
+}
+// add our container div to the page
+document.body.appendChild(selectorDiv);
 
 // check for roll click
 const rollButton = document.createElement("button"); // create our roll button
